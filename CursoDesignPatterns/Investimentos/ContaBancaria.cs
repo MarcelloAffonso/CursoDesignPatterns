@@ -6,10 +6,12 @@ namespace CursoDesignPatterns.Investimentos
 {
     public class ContaBancaria
     {
+        public string Titular { get; private set; }
         public double Saldo { get; private set; }
 
-        public ContaBancaria(double saldo)
+        public ContaBancaria(string titular, double saldo)
         {
+            this.Titular = titular;
             this.Saldo = saldo;
         }
 
