@@ -1,6 +1,7 @@
 ﻿using CursoDesignPatterns.Investimentos;
 using CursoDesignPatterns.Relatorios;
 using System;
+using System.Collections.Generic;
 
 namespace CursoDesignPatterns
 {
@@ -124,18 +125,52 @@ namespace CursoDesignPatterns
             #endregion
 
             #region Relatorio
+            //Relatorio relatorioSimples = new RelatorioSimples();
+            //Relatorio relatorioComplexo = new RelatorioComplexo();
 
-            Relatorio relatorioSimples = new RelatorioSimples();
-            Relatorio relatorioComplexo = new RelatorioComplexo();
+            //Banco banco = new Banco("Itaú","Avenida da Tormenta, 71","(11)4022-8922","itau@gmail.com");
+            //banco.AdicionaConta(new ContaBancaria("Lucas", 500.00, "000-00001", "9999999"));
 
-            Banco banco = new Banco("Itaú","Avenida da Tormenta, 71","(11)4022-8922","itau@gmail.com");
-            banco.AdicionaConta(new ContaBancaria("Lucas", 500.00, "000-00001", "9999999"));
+            //relatorioSimples.MontaRelatorio(banco);
+            //Console.WriteLine("\n");
+            //Console.WriteLine("----------------------------------------------------------------");
+            //Console.WriteLine("\n");
+            //relatorioComplexo.MontaRelatorio(banco);
 
-            relatorioSimples.MontaRelatorio(banco);
-            Console.WriteLine("\n");
-            Console.WriteLine("----------------------------------------------------------------");
-            Console.WriteLine("\n");
-            relatorioComplexo.MontaRelatorio(banco);
+            #endregion
+
+            #region Decorator - Impostos
+            ISS iss = new ISS(new ImpostoMuitoAlto());
+            ISS iss2 = new ISS();
+
+            Orcamento orcamento = new Orcamento(500.00);
+
+            double valor = iss.Calcula(orcamento);
+            double valor2 = iss2.Calcula(orcamento);
+
+            Console.WriteLine(valor);
+            Console.WriteLine(valor2);
+            #endregion
+
+            #region Decorator - Filtro
+            Filtro filtro100 = new FiltroSaldoMenor100Reais(new FiltroSaldoMaior500Mil(new FiltroContaAbertaMesCorrente()));
+
+            IList<ContaBancaria> contas = new List<ContaBancaria>
+            {
+                new ContaBancaria("Lucas", 50.00,"","",DateTime.Now.AddMonths(-5)),
+                new ContaBancaria("Pedro", 1000000.00,"","",DateTime.Now.AddMonths(-8)),
+                new ContaBancaria("Alan", 8000.00,"","",DateTime.Now),
+                new ContaBancaria("Juan", 5.00,"","",DateTime.Now),
+                new ContaBancaria("Igor", 500.00,"","",DateTime.Now.AddMonths(-35)),
+
+            };
+
+            IList<ContaBancaria> contasSuspeitas = filtro100.Filtra(contas);
+
+            foreach(var conta in contasSuspeitas)
+            {
+                Console.WriteLine(conta.Titular);
+            }
 
             #endregion
 

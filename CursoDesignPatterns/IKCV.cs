@@ -6,6 +6,9 @@ namespace CursoDesignPatterns
 {
     public class IKCV : TemplateDeImpostoCondicional
     {
+        public IKCV(Imposto outroImposto) : base(outroImposto) { }
+        public IKCV() : base() { }
+
         /// <summary>
         /// Regra para máxima taxação: orçamento é maior que 500 reais e tem pelo menos um item com valor maior que 100 reais
         /// </summary>

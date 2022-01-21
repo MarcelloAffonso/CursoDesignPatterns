@@ -11,6 +11,7 @@ namespace CursoDesignPatterns.Investimentos
 
         public string Agencia { get; private set; }
         public string NumeroConta { get; private set; }
+        public DateTime DataAbertura { get; private set; }
 
         public ContaBancaria(string titular, double saldo)
         {
@@ -20,12 +21,13 @@ namespace CursoDesignPatterns.Investimentos
             this.NumeroConta = "0000000000";
         }
 
-        public ContaBancaria(string titular, double saldo, string agencia, string numeroConta)
+        public ContaBancaria(string titular, double saldo, string agencia, string numeroConta, DateTime dataAbertura)
         {
             this.Titular = titular;
             this.Saldo = saldo;
             Agencia = agencia;
             NumeroConta = numeroConta;
+            DataAbertura = dataAbertura;
         }
 
         public void AdicionaSaldo(double valor)

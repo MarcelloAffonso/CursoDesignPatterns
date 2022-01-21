@@ -6,6 +6,9 @@ namespace CursoDesignPatterns
 {
     public class ICPP : TemplateDeImpostoCondicional
     {
+        public ICPP(Imposto outroImposto) : base(outroImposto) { }
+        public ICPP() : base() { }
+
         /// <summary>
         /// Regra para máxima taxação: orçamento é maior ou igual a 500 reais
         /// </summary>

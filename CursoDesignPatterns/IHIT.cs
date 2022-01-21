@@ -5,6 +5,9 @@ namespace CursoDesignPatterns
 {
     public class IHIT : TemplateDeImpostoCondicional
     {
+        public IHIT(Imposto outroImposto) : base(outroImposto) { }
+        public IHIT() : base() { }
+
         /// <summary>
         /// Regra para máxima taxação: orçamento possui dois itens com o mesmo nome
         /// </summary>
