@@ -140,38 +140,66 @@ namespace CursoDesignPatterns
             #endregion
 
             #region Decorator - Impostos
-            ISS iss = new ISS(new ImpostoMuitoAlto());
-            ISS iss2 = new ISS();
+            //ISS iss = new ISS(new ImpostoMuitoAlto());
+            //ISS iss2 = new ISS();
 
-            Orcamento orcamento = new Orcamento(500.00);
+            //Orcamento orcamento = new Orcamento(500.00);
 
-            double valor = iss.Calcula(orcamento);
-            double valor2 = iss2.Calcula(orcamento);
+            //double valor = iss.Calcula(orcamento);
+            //double valor2 = iss2.Calcula(orcamento);
 
-            Console.WriteLine(valor);
-            Console.WriteLine(valor2);
+            //Console.WriteLine(valor);
+            //Console.WriteLine(valor2);
             #endregion
 
             #region Decorator - Filtro
-            Filtro filtro100 = new FiltroSaldoMenor100Reais(new FiltroSaldoMaior500Mil(new FiltroContaAbertaMesCorrente()));
+            //Filtro filtro100 = new FiltroSaldoMenor100Reais(new FiltroSaldoMaior500Mil(new FiltroContaAbertaMesCorrente()));
 
-            IList<ContaBancaria> contas = new List<ContaBancaria>
-            {
-                new ContaBancaria("Lucas", 50.00,"","",DateTime.Now.AddMonths(-5)),
-                new ContaBancaria("Pedro", 1000000.00,"","",DateTime.Now.AddMonths(-8)),
-                new ContaBancaria("Alan", 8000.00,"","",DateTime.Now),
-                new ContaBancaria("Juan", 5.00,"","",DateTime.Now),
-                new ContaBancaria("Igor", 500.00,"","",DateTime.Now.AddMonths(-35)),
+            //IList<ContaBancaria> contas = new List<ContaBancaria>
+            //{
+            //    new ContaBancaria("Lucas", 50.00,"","",DateTime.Now.AddMonths(-5)),
+            //    new ContaBancaria("Pedro", 1000000.00,"","",DateTime.Now.AddMonths(-8)),
+            //    new ContaBancaria("Alan", 8000.00,"","",DateTime.Now),
+            //    new ContaBancaria("Juan", 5.00,"","",DateTime.Now),
+            //    new ContaBancaria("Igor", 500.00,"","",DateTime.Now.AddMonths(-35)),
 
-            };
+            //};
 
-            IList<ContaBancaria> contasSuspeitas = filtro100.Filtra(contas);
+            //IList<ContaBancaria> contasSuspeitas = filtro100.Filtra(contas);
 
-            foreach(var conta in contasSuspeitas)
-            {
-                Console.WriteLine(conta.Titular);
-            }
+            //foreach(var conta in contasSuspeitas)
+            //{
+            //    Console.WriteLine(conta.Titular);
+            //}
+            #endregion
 
+            #region State - Orçamento
+            //Orcamento reforma = new Orcamento(500);
+            //Console.WriteLine(reforma.Valor);
+
+            //reforma.AplicaDescontoExtra();
+            //Console.WriteLine(reforma.Valor);
+
+            //reforma.Aprova();
+            //reforma.AplicaDescontoExtra();
+            //Console.WriteLine(reforma.Valor);
+
+            //reforma.Finaliza();
+
+            //// Deve lançar uma excessão
+            //reforma.AplicaDescontoExtra();
+            #endregion
+
+            #region State - Conta Bancária
+            ContaBancaria conta1 = new ContaBancaria("Lucas", 500.00, "000-00001", "9999999", DateTime.Now.AddMonths(-58));
+
+            conta1.Saca(700);
+
+            Console.WriteLine(conta1.Saldo);
+
+            conta1.Deposita(1000);
+
+            Console.WriteLine(conta1.Saldo);
             #endregion
 
         }

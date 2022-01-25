@@ -15,7 +15,7 @@ namespace CursoDesignPatterns.Investimentos
             double lucroLiquidoInvestimento = lucroBrutoInvestimento * 0.75;
 
             // Adiciona o valor líquido à conta
-            conta.AdicionaSaldo(lucroLiquidoInvestimento);
+            conta.Deposita(lucroLiquidoInvestimento);
 
             // Exibe para o usuário
             Console.WriteLine(conta.Saldo);
