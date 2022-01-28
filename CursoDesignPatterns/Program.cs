@@ -191,15 +191,33 @@ namespace CursoDesignPatterns
             #endregion
 
             #region State - Conta Bancária
-            ContaBancaria conta1 = new ContaBancaria("Lucas", 500.00, "000-00001", "9999999", DateTime.Now.AddMonths(-58));
+            //ContaBancaria conta1 = new ContaBancaria("Lucas", 500.00, "000-00001", "9999999", DateTime.Now.AddMonths(-58));
 
-            conta1.Saca(700);
+            //conta1.Saca(700);
 
-            Console.WriteLine(conta1.Saldo);
+            //Console.WriteLine(conta1.Saldo);
 
-            conta1.Deposita(1000);
+            //conta1.Deposita(1000);
 
-            Console.WriteLine(conta1.Saldo);
+            //Console.WriteLine(conta1.Saldo);
+            #endregion
+
+            #region Builder
+
+            NotaFiscal notaFiscal = new NotaFiscalBuilder()
+                .ParaEmpresa("Caelum Ensino e Inovação")
+                .ComCnpj("23.456.789/0001-12")
+                .Com(new ItemDaNotaBuilder()
+                                .ParaItem("item 1")
+                                .ComValor(100.0)
+                                .Constroi())
+                .Com(new ItemDaNotaBuilder()
+                                .ParaItem("item 2")
+                                .ComValor(200.0)
+                                .Constroi())
+                .ComObservacoes("uma observação qualquer.")
+                .Constroi();
+
             #endregion
 
         }
