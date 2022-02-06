@@ -204,7 +204,7 @@ namespace CursoDesignPatterns
 
             #region Builder
 
-            NotaFiscal notaFiscal = new NotaFiscalBuilder()
+             NotaFiscalBuilder criador = new NotaFiscalBuilder()
                 .ParaEmpresa("Caelum Ensino e Inovação")
                 .ComCnpj("23.456.789/0001-12")
                 .Com(new ItemDaNotaBuilder()
@@ -215,8 +215,15 @@ namespace CursoDesignPatterns
                                 .ParaItem("item 2")
                                 .ComValor(200.0)
                                 .Constroi())
-                .ComObservacoes("uma observação qualquer.")
-                .Constroi();
+                .ComObservacoes("uma observação qualquer.");
+
+            criador.AdicionaAcao(new EnviadorDeEmail());
+            criador.AdicionaAcao(new EnviadorDeSms());
+            criador.AdicionaAcao(new NotaFiscalDAO());
+            criador.AdicionaAcao(new Impressora());
+            criador.AdicionaAcao(new Multiplicador(2));
+
+            NotaFiscal notaFiscal = criador.Constroi();
 
             #endregion
 
